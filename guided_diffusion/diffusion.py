@@ -20,6 +20,7 @@ import random
 
 from scipy.linalg import orth
 
+import pdb
 
 def get_gaussian_noisy_img(img, noise_level):
     return img + torch.randn_like(img).cuda() * noise_level
@@ -399,7 +400,7 @@ class Diffusion(object):
             x = [inverse_data_transform(config, xi) for xi in x]
 
             tvu.save_image(
-                x[0], os.path.join(self.args.image_folder, f"{idx_so_far + j}_{0}.png")
+                x[0], os.path.join(self.args.image_folder, f"{idx_so_far + i}_{0}.png")
             )
             orig = inverse_data_transform(config, x_orig[0])
             mse = torch.mean((x[0].to(self.device) - orig) ** 2)
